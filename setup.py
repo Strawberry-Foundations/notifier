@@ -12,7 +12,7 @@ with open("README.md", "r", encoding="utf8") as fh:
 
 setup(
     name="notifier.py",
-    version="0.3.38",
+    version="0.4.0",
     author="Juliandev02",
     description="A simple Python library that simplifies the sending of desktop notifications!",
     long_description=long_description,
