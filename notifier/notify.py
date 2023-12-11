@@ -73,6 +73,9 @@ class Notifier:
 
             else:
                 self._notifier_detect = self._selected_notification_system()
+                
+        if kwargs.get("override_windows_version_detection"):
+            self.override_windows_version_detection = kwargs.get("override_windows_version_detection")
 
         # Initialize.
         self._notifier = self._notifier_detect(**kwargs)
