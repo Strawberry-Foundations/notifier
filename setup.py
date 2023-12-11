@@ -11,7 +11,7 @@ with open("README.md", "r", encoding="utf8") as fh:
     long_description = fh.read()
 
 setup(
-    name="pynotifier",
+    name="notifier.py",
     version="0.3.38",
     author="Juliandev02",
     description="A simple Python library that simplifies the sending of desktop notifications!",
