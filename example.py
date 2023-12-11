@@ -1,2 +1,3 @@
-import stbnotifications
+from stbnotifications import Notifier
 
+notification = Notifier()
