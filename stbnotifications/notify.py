@@ -17,7 +17,7 @@ from .exceptions import (
 from .os_notifiers._base import BaseNotifier
 
 
-class Notify:
+class Notifier:
     def __init__(
         self,
         default_notification_title="Default Title",
