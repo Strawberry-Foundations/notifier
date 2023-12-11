@@ -84,6 +84,7 @@ class Notifier:
         self._notification_urgency              = default_notification_urgency
         
         self.override_windows_version_detection = False
+        self.override_windows_version           = None
 
         # These defaults require verification
         if default_notification_icon:
@@ -100,8 +101,11 @@ class Notifier:
         else:
             self._notification_audio = None
 
-    def override(self, windows_version_detection: bool = False):
+    def override(self, windows_version_detection: bool = False, overide_windows_version: str = None):
         self.override_windows_version_detection = windows_version_detection
+
+        if not overide_windows_version is None:
+            self.override_windows_version = overide_windows_version
         
 
     
@@ -115,6 +119,7 @@ class Notifier:
         if override_detection:
             logger.info(f"chosen to override to {override_detection}.")
             selected_platform = override_detection
+            
         else:
             selected_platform = platform.system()
 
