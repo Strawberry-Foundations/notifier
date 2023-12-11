@@ -5,7 +5,7 @@
   <br>
   <br>
   <p align="center">
-    <img src="https://img.shields.io/badge/Currently_not_available-on%20PyPi-blue?logoColor=white&logo=Python">
+    <a href="https://pypi.org/project/notifier.py"><img src="https://img.shields.io/badge/Available-on%20PyPi-blue?logoColor=white&logo=Python"></a>
     <img src="https://img.shields.io/badge/Python-3.6%2B-blue?logo=python">
   </p>
 </div>
