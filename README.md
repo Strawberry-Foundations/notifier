@@ -14,9 +14,13 @@
 Notifier (pynotifier) is a Python library that allows you to easily send desktop notifications. <br>
 This project originally came from https://github.com/ms7m/notify-py (huge thanks), but we decided to fork this project, actively maintain it and add more features. 
 
-## Supported Platforms.
+## Supported Platforms
 
 - Windows 10/11
 - Windows 8.1 (*Balloon tips*)
 - macOS 10 >=10.10
 - Linux (*libnotify*)
+
+| <center>Windows 7</center> | <center>Windows 8.1</center> | <center>Windows 10</center> | <center>Windows 11</center>  | <center>Linux</center>   | <center>macOS 10 >=10.10</center> |
+| -------------------------- | ---------------------------- | --------------------------- | ---------------------------- | ------------------------ | --------------------------------- | 
+| ❓       | <center>✅</center> (Balloon tips) | <center>✅</center>(Toast notification) | <center>✅</center>(Toast notification) | <center>✅</center> (requires libnotify) | <center>✅</center> (No custom icon) |
