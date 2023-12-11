@@ -27,8 +27,10 @@ This project originally came from https://github.com/ms7m/notify-py (huge thanks
 
 
 ## Installation
-
-Currently, Notifier (pynotifier) is not available on PyPi. Please be patient.
+You can install notifier with pip
+```
+pip install notifier.py
+```
 
 ## Usage
 ### Send Simple Notification
