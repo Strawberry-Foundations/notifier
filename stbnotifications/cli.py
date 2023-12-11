@@ -1,4 +1,4 @@
-from .notify import Notify
+from .notify import Notifier
 import argparse
 
 
@@ -83,7 +83,7 @@ def entry():
         _current_extra_built_kwargs[
             "default_notification_icon"
         ] = arguments_recieved.userCreatedIconPath
-    Notify(
+    Notifier(
         default_notification_title=arguments_recieved.userCreatedTitle,
         default_notification_message=arguments_recieved.userCreatedMessage,
         default_notification_application_name=arguments_recieved.userCreatedApplicationName,
