@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pynotifier"
-version = "0.3.42"
+version = "0.4.0"
 description = "A simple Python library that simplifies the sending of desktop notifications!"
 authors = ["Juliandev02"]
 repository = "https://github.com/Strawberry-Foundations/notifier"
