@@ -21,6 +21,91 @@ This project originally came from https://github.com/ms7m/notify-py (huge thanks
 - macOS 10 >=10.10
 - Linux (*libnotify*)
 
-| Windows 7 | Windows 8.1               | Windows 10              | Windows 11               | Linux                    | macOS 10 >=10.10    |
-| --------- |-------------------------- | ----------------------- | -------------------------| ------------------------ | ------------------  | 
-| ❓       | ✅ <br>(Balloon tips)          | ✅ <br>(Toast notification) | ✅ <br>(Toast notification) | ✅ <br>(requires libnotify) | ✅ <br>(No custom icon) |
+| Windows 7 | Windows 8.1               | Windows 10                  | Windows 11                   | Linux                       | macOS 10 >=10.10         |
+| --------- |-------------------------- | --------------------------- | ---------------------------- | --------------------------- | -----------------------  | 
+| ❓       | ✅ <br>(Balloon tips)     | ✅ <br>(Toast notification) | ✅ <br>(Toast notification) | ✅ <br>(requires libnotify) | ✅ <br>(No custom icon) |
+
+
+## Installation
+
+Currently, Notifier (pynotifier) is not available on PyPi. Please be patient.
+
+## Usage
+### Send Simple Notification
+
+```python
+from notifier import Notifier
+
+notifier = Notifier()
+notifier.title = "Some title"
+notifier.message = "Some message"
+
+notifier.send()
+```
+
+
+### Send Notification With Icon
+
+```python
+from notifier import Notifier
+
+notifier = Notifier()
+notifier.title = "Some title"
+notifier.message = "Some message"
+notifier.icon = "path/to/icon.png" # .png is not supported under windows 8.1
+
+notifier.send()
+```
+
+### Send Notification With Sound
+
+```python
+from notifier import Notifier
+
+notifier = Notifier()
+notifier.title = "Some title"
+notifier.message = "Some message"
+notifier.audio = "path/to/audio/file.wav" # we currently only support wav files
+
+notifier.send()
+```
+
+### Sending with Default Notification Titles/Messages/Icons
+
+```python
+from notifier import Notifier
+
+notifier = Notifier(
+  default_notification_title="Function Message",
+  default_application_name="Great Application",
+  default_notification_icon="path/to/icon.png",
+  default_notification_audio="path/to/sound.wav"
+)
+
+def your_function():
+  # stuff happening here.
+  notifier.message = "Function Result"
+  notifier.send()
+```
+
+### Disabling Windows Version Detection
+```python
+from notifier import Notifier
+
+notifier = Notifier(override_windows_version_detection=True)
+notifier.title = "Some title"
+notifier.message = "Some message"
+
+notifier.send()
+```
+
+### Changing Windows Override Version
+```python
+from notifier import Notifier
+
+notifier = Notifier(override_windows_version="8.1") # Available values: 10, 8.1
+notifier.title = "Some title"
+notifier.message = "Some message"
+
+notifier.send()
+```
