@@ -67,17 +67,22 @@ class Notifier:
                 raise ValueError("Overrided Notifier must inherit from BaseNotifier.")
             
         else:
-            check_if_user_override_detection = kwargs.get("override_detected_notification_system")
+            # check_if_user_override_detection = kwargs.get("override_detected_notification_system")
             
-            if check_if_user_override_detection:
-                self._notifier_detect = self._selected_notification_system(**kwargs)
+            # if check_if_user_override_detection:
+            #     self._notifier_detect = self._selected_notification_system(**kwargs)
 
-            else:
-                self._notifier_detect = self._selected_notification_system()
+            # else:
+            #     self._notifier_detect = self._selected_notification_system()
+            
+            self._notifier_detect = self._selected_notification_system(**kwargs)
                 
         if kwargs.get("override_windows_version_detection"):
             self.override_windows_version_detection = kwargs.get("override_windows_version_detection")
 
+        if kwargs.get("override_windows_version"):
+            self.override_windows_version = kwargs.get("override_windows_version")
+            
         # Initialize.
         self._notifier = self._notifier_detect(**kwargs)
 
@@ -117,7 +122,8 @@ class Notifier:
     def _selected_notification_system(
         override_detection: str = False,
         override_windows_version_detection: bool = False,
-        linux_use_legacy_notifier: bool = False,
+        override_windows_version: str = None,
+        linux_use_legacy_notifier: bool = False
     ):
 
         if override_detection:
@@ -133,6 +139,18 @@ class Notifier:
             return MacOSNotifier
         
         elif selected_platform == "Windows":
+            print(override_windows_version)
+            
+            if override_windows_version:
+                if override_windows_version == "10":
+                    from .os_notifiers.windows import WindowsNotifier
+                    return WindowsNotifier
+
+                elif override_windows_version == "8.1":
+                    from .os_notifiers.windows_legacy import WindowsLegacyNotifier
+                    return WindowsLegacyNotifier
+                
+                
             if platform.release() == "10":
                 from .os_notifiers.windows import WindowsNotifier
 
