@@ -18,36 +18,40 @@ from .os_notifiers._base import BaseNotifier
 
 
 class Notifier:
+    
+    """Main Notify Class.
+
+    Optional Arugments:
+        override_detected_notification_system: Optional Kwarg that allows for the use of overrding the detected notifier.
+        disable_logging: Optional Kwarg that will disable stdout logging from this library.
+        custom_mac_notificator: Optional Kwarg for a custom mac notifier. (Probably because you want to change the icon.). This is a direct path to the parent directory (.app).
+
+    """
     def __init__(
         self,
         default_notification_title="Default Title",
         default_notification_message="Default Message",
-        default_notification_application_name="Python Application (notify.py)",
+        default_notification_application_name="Python Application",
         default_notification_urgency='normal',
         default_notification_icon=None,
         default_notification_audio=None,
         enable_logging=False,
         **kwargs,
     ):
-        """Main Notify Class.
-
-        Optional Arugments:
-            override_detected_notification_system: Optional Kwarg that allows for the use of overrding the detected notifier.
-            disable_logging: Optional Kwarg that will disable stdout logging from this library.
-            custom_mac_notificator: Optional Kwarg for a custom mac notifier. (Probably because you want to change the icon.). This is a direct path to the parent directory (.app).
-
-        """
+        
 
         if not enable_logging:
             check_if_enable_logging_env = os.getenv("notifypyEnableLogging")
+            
             if check_if_enable_logging_env:
-                logger.warning(
-                    f"System environment variable for enabling logging is active. Ignoring parameter passed. ({enable_logging})"
-                )
+                logger.warning(f"System environment variable for enabling logging is active. Ignoring parameter passed. ({enable_logging})")
+                
             else:
                 logger.disable("notifypy")
+                
         else:
             logger.info("Logging is enabled.")
+            
 
         if kwargs.get("use_custom_notifier"):
             """
@@ -57,14 +61,16 @@ class Notifier:
             selected_override = kwargs.get("use_custom_notifier")
             if issubclass(selected_override, BaseNotifier):
                 self._notifier_detect = selected_override
+                
             else:
                 raise ValueError("Overrided Notifier must inherit from BaseNotifier.")
+            
         else:
-            check_if_user_override_detection = kwargs.get(
-                "override_detected_notification_system"
-            )
+            check_if_user_override_detection = kwargs.get("override_detected_notification_system")
+            
             if check_if_user_override_detection:
                 self._notifier_detect = self._selected_notification_system(**kwargs)
+
             else:
                 self._notifier_detect = self._selected_notification_system()
 
@@ -72,10 +78,12 @@ class Notifier:
         self._notifier = self._notifier_detect(**kwargs)
 
         # Set the defaults.
-        self._notification_title = default_notification_title
-        self._notification_message = default_notification_message
-        self._notification_application_name = default_notification_application_name
-        self._notification_urgency = default_notification_urgency
+        self._notification_title                = default_notification_title
+        self._notification_message              = default_notification_message
+        self._notification_application_name     = default_notification_application_name
+        self._notification_urgency              = default_notification_urgency
+        
+        self.override_windows_version_detection = False
 
         # These defaults require verification
         if default_notification_icon:
@@ -92,6 +100,11 @@ class Notifier:
         else:
             self._notification_audio = None
 
+    def override(self, windows_version_detection: bool = False):
+        self.override_windows_version_detection = windows_version_detection
+        
+
+    
     @staticmethod
     def _selected_notification_system(
         override_detection: str = False,
