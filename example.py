@@ -1,5 +1,4 @@
 from notifier import Notifier
 
-notifier = Notifier()
-notifier.override(windows_version_detection=True)
+notifier = Notifier(override_windows_version_detection=True, override_windows_version="8.1")
 notifier.send()
