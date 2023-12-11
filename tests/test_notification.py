@@ -8,12 +8,12 @@ from stbnotifications import BaseNotifier
 
 
 def test_normal_notification():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     assert n.send() == True
 
 
 def test_multiline_notification():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     n.message = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 sed do eiusmod tempor incididunt ut labore et dolore magna 
@@ -27,83 +27,83 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
 
 def test_notification_with_emoji():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     n.title = "🐐"
     n.message = "also known as Kanye West"
 
 
 def test_notification_with_double_quotes():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     n.title = '" Yes "Yes"'
     assert n.send() == True
 
 
 def test_notification_with_special_chars():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     n.message = '"""""; """ ;;# ##>>> <<>>< </>'
     assert n.send() == True
 
 
 def test_blank_message_notification():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     n.message = ""
     assert n.send() == True
 
 
 def test_blank_title_notification():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     n.title = ""
     assert n.send() == True
 
 
 def test_rtl_language_notification():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     n.title = "مرحبا كيف الحال؟"
     assert n.send() == True
 
 
 def test_blocking_notification():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     assert n.send(block=True) == True
 
 
 def test_non_blocking_notification():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     thread_notify = n.send(block=False)
     assert thread_notify.wait()
 
 
 def test_custom_audio():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     n.audio = "notifypy/example_notification_sound.wav"
     assert n.send() == True
 
 
 def test_custom_audio_no_file():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     with pytest.raises(stbnotifications.exceptions.InvalidAudioFormat):
         n.audio = "not a file!"
 
 
 def test_non_existant_icon():
-    n = stbnotifications.Notify(enable_logging=True)
+    n = stbnotifications.Notifier(enable_logging=True)
     with pytest.raises(stbnotifications.exceptions.InvalidIconPath):
         n.icon = "ttt"
 
 
 def test_invalid_icon_default():
     with pytest.raises(stbnotifications.exceptions.InvalidIconPath):
-        n = stbnotifications.Notify(default_notification_icon="sadfiasjdfisaodfj")
+        n = stbnotifications.Notifier(default_notification_icon="sadfiasjdfisaodfj")
 
 
 def test_invalid_audio_default():
     with pytest.raises(stbnotifications.exceptions.InvalidAudioPath):
-        n = stbnotifications.Notify(default_notification_audio="dsaiofj/sadf/vv.wav")
+        n = stbnotifications.Notifier(default_notification_audio="dsaiofj/sadf/vv.wav")
 
 
 def test_invalid_audio_format_default():
     with pytest.raises(stbnotifications.exceptions.InvalidAudioFormat):
-        n = stbnotifications.Notify(default_notification_audio="asdfiojasdfioj")
+        n = stbnotifications.Notifier(default_notification_audio="asdfiojasdfioj")
 
 
 def test_custom_notification():
@@ -111,7 +111,7 @@ def test_custom_notification():
         def __init__(self, **kwargs):
             pass
 
-    n = stbnotifications.Notify(use_custom_notifier=CustomNotificator)
+    n = stbnotifications.Notifier(use_custom_notifier=CustomNotificator)
     assert n._notifier_detect == CustomNotificator
 
 
@@ -120,7 +120,7 @@ def test_invalid_custom_notification():
         pass
 
     with pytest.raises(ValueError):
-        stbnotifications.Notify(use_custom_notifier=CustomNotificator)
+        stbnotifications.Notifier(use_custom_notifier=CustomNotificator)
 
 
 def test_unexposed_inherit_baseNotifier():
@@ -137,7 +137,7 @@ def test_macOS_custom_notificator():
     custom_notificator_path = str(
         pathlib.Path(__file__).resolve().parent / "Notificator.app"
     )
-    n = stbnotifications.Notify(custom_mac_notificator=custom_notificator_path)
+    n = stbnotifications.Notifier(custom_mac_notificator=custom_notificator_path)
     assert (
         n._notifier._notificator_binary
         == custom_notificator_path + "/Contents/Resources/Scripts/notificator"
