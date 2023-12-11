@@ -21,6 +21,6 @@ This project originally came from https://github.com/ms7m/notify-py (huge thanks
 - macOS 10 >=10.10
 - Linux (*libnotify*)
 
-| <center>Windows 7</center> | <center>Windows 8.1</center> | <center>Windows 10</center> | <center>Windows 11</center>  | <center>Linux</center>   | <center>macOS 10 >=10.10</center> |
-| -------------------------- | ---------------------------- | --------------------------- | ---------------------------- | ------------------------ | --------------------------------- | 
-| ❓       | <center>✅</center> (Balloon tips) | <center>✅</center>(Toast notification) | <center>✅</center>(Toast notification) | <center>✅</center> (requires libnotify) | <center>✅</center> (No custom icon) |
+| Windows 7 | Windows 8.1               | Windows 10              | Windows 11               | Linux                    | macOS 10 >=10.10    |
+| --------- |-------------------------- | ----------------------- | -------------------------| ------------------------ | ------------------  | 
+| ❓       | ✅ <br>(Balloon tips)          | ✅ <br>(Toast notification) | ✅ <br>(Toast notification) | ✅ <br>(requires libnotify) | ✅ <br>(No custom icon) |
