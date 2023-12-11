@@ -139,8 +139,6 @@ class Notifier:
             return MacOSNotifier
         
         elif selected_platform == "Windows":
-            print(override_windows_version)
-            
             if override_windows_version:
                 if override_windows_version == "10":
                     from .os_notifiers.windows import WindowsNotifier
