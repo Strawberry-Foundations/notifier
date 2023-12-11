@@ -1,5 +1,5 @@
 import io
-from stbnotifications.cli import entry
+from notifier.cli import entry
 import os
 import sys
 
