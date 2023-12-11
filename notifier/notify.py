@@ -122,11 +122,17 @@ class Notifier:
             from .os_notifiers.macos import MacOSNotifier
 
             return MacOSNotifier
+        
         elif selected_platform == "Windows":
             if platform.release() == "10":
                 from .os_notifiers.windows import WindowsNotifier
 
                 return WindowsNotifier
+            
+            elif platform.release() == "8.1":
+                from .os_notifiers.windows_legacy import WindowsLegacyNotifier
+                
+                return WindowsLegacyNotifier
 
             if override_windows_version_detection == True:
                 from .os_notifiers.windows import WindowsNotifier
