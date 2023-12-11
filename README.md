@@ -109,3 +109,10 @@ notifier.message = "Some message"
 
 notifier.send()
 ```
+
+## Inspiration and Special Thanks
+- Thanks to [ms7m](https://github.com/ms7m/) for creating https://github.com/ms7m/notify-py 
+- Also thanks to [jithurjacob](https://github.com/jithurjacob) for creating https://github.com/jithurjacob/Windows-10-Toast-Notifications
+
+## Side notes
+- macOS does **not** support custom icons on the fly.. You will need to bundle a customized version of the notifier embedded with your custom icon.
