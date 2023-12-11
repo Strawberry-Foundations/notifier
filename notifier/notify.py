@@ -22,6 +22,7 @@ class Notifier:
     """Main Notify Class.
 
     Optional Arugments:
+        override_windows_version_detection: Optional Kwarg that will disable windows version detection
         override_detected_notification_system: Optional Kwarg that allows for the use of overrding the detected notifier.
         disable_logging: Optional Kwarg that will disable stdout logging from this library.
         custom_mac_notificator: Optional Kwarg for a custom mac notifier. (Probably because you want to change the icon.). This is a direct path to the parent directory (.app).
