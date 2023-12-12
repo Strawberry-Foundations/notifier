@@ -101,7 +101,7 @@ class Notifier:
             self._notification_icon = self._verify_icon_path(default_notification_icon)
         else:
             self._notification_icon = str(
-                os.path.join(os.path.dirname(__file__), "py-logo.png")
+                os.path.join(os.path.dirname(__file__), "data/py-logo.png")
             )
 
         if default_notification_audio:
