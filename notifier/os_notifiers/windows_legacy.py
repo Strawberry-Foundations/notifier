@@ -17,4 +17,4 @@ class WindowsLegacyNotifier(BaseNotifier):
         
 
     def send_notification(self, notification_title, notification_subtitle, notification_icon, application_name, notification_audio, **kwargs,):
-        self._notifier.show_toast(notification_title, notification_subtitle, icon_path=notification_icon, duration=10)
+        self._notifier.show_toast(notification_title, notification_subtitle, icon_path=notification_icon, duration=10, threaded=True)
