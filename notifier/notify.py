@@ -390,8 +390,6 @@ class Notifier:
             bool: True if the notification was sent.
         """
         
-        print(self.override_windows_version)
-        
         if self.override_windows_version:
             if self.override_windows_version == "8.1":
                 supplied_icon_path = self._notification_icon_legacy
