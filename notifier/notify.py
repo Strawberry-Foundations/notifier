@@ -27,6 +27,7 @@ class Notifier:
         override_detected_notification_system: Optional Kwarg that allows for the use of overrding the detected notifier.
         disable_logging: Optional Kwarg that will disable stdout logging from this library.
         custom_mac_notificator: Optional Kwarg for a custom mac notifier. (Probably because you want to change the icon.). This is a direct path to the parent directory (.app).
+        default_notification_icon_legacy: Optional Kwarg to specify the default notification icon for legacy windows systems (e.g. Windows 8.1)
 
     """
     def __init__(
@@ -61,6 +62,7 @@ class Notifier:
             Use at your own risk
             """
             selected_override = kwargs.get("use_custom_notifier")
+            
             if issubclass(selected_override, BaseNotifier):
                 self._notifier_detect = selected_override
                 
@@ -106,14 +108,10 @@ class Notifier:
         if default_notification_icon:
             self._notification_icon = self._verify_icon_path(default_notification_icon)
         else:
-            self._notification_icon = str(
-                os.path.join(os.path.dirname(__file__), "data/py-logo.png")
-            )
+            self._notification_icon = str(os.path.join(os.path.dirname(__file__), "data/py-logo.png"))
 
         if default_notification_audio:
-            self._notification_audio = self._verify_audio_path(
-                default_notification_audio
-            )
+            self._notification_audio = self._verify_audio_path(default_notification_audio)
         else:
             self._notification_audio = None
 
