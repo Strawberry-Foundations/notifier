@@ -86,6 +86,8 @@ class Notifier:
 
         if kwargs.get("override_windows_version"):
             self.override_windows_version = kwargs.get("override_windows_version")
+        else:
+            self.override_windows_version = None
             
         # Initialize.
         self._notifier = self._notifier_detect(**kwargs)
@@ -97,7 +99,7 @@ class Notifier:
         self._notification_urgency              = default_notification_urgency
         
         self.override_windows_version_detection = False
-        self.override_windows_version           = None
+        
         
         if kwargs.get("default_notification_icon_legacy"):
             self._notification_icon_legacy = self._verify_icon_path(kwargs.get("default_notification_icon_legacy"))
@@ -129,7 +131,8 @@ class Notifier:
         override_detection: str = False,
         override_windows_version_detection: bool = False,
         override_windows_version: str = None,
-        linux_use_legacy_notifier: bool = False
+        linux_use_legacy_notifier: bool = False,
+        default_notification_icon_legacy: str = "./data/python.ico"
     ):
 
         if override_detection:
@@ -386,6 +389,8 @@ class Notifier:
         Returns:
             bool: True if the notification was sent.
         """
+        
+        print(self.override_windows_version)
         
         if self.override_windows_version:
             if self.override_windows_version == "8.1":
