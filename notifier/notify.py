@@ -45,13 +45,13 @@ class Notifier:
         
 
         if not enable_logging:
-            check_if_enable_logging_env = os.getenv("notifypyEnableLogging")
+            check_if_enable_logging_env = os.getenv("notifierEnableLogging")
             
             if check_if_enable_logging_env:
                 logger.warning(f"System environment variable for enabling logging is active. Ignoring parameter passed. ({enable_logging})")
                 
             else:
-                logger.disable("notifypy")
+                logger.disable("notifier")
                 
         else:
             logger.info("Logging is enabled.")
