@@ -8,7 +8,7 @@ import codecs
 from loguru import logger
 from ._base import BaseNotifier
 
-from ..win10toast import ToastNotifier
+from ..toast import ToastNotifier
 
 class WindowsLegacyNotifier(BaseNotifier):
     """Main Notification System for Windows (8.1). Uses win10toast"""
