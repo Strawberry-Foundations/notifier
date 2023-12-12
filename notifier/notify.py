@@ -386,6 +386,11 @@ class Notifier:
         Returns:
             bool: True if the notification was sent.
         """
+        
+        if self.override_windows_version:
+            if self.override_windows_version == "8.1":
+                supplied_icon_path = self._notification_icon_legacy
+        
         try:
             attempt_to_send_notifiation = self._notifier.send_notification(
                 notification_title=str(supplied_title),
