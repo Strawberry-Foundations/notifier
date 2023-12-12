@@ -95,6 +95,12 @@ class Notifier:
         
         self.override_windows_version_detection = False
         self.override_windows_version           = None
+        
+        if kwargs.get("default_notification_icon_legacy"):
+            self._notification_icon_legacy = self._verify_icon_path(kwargs.get("default_notification_icon_legacy"))
+        else:
+            self._notification_icon_legacy = str(os.path.join(os.path.dirname(__file__), "data/python.ico"))        
+        
 
         # These defaults require verification
         if default_notification_icon:
