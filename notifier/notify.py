@@ -3,7 +3,7 @@ import os
 import pathlib
 import threading
 
-version = "0.4.3"
+version = "0.4.4"
 
 from loguru import logger
 from .exceptions import (
