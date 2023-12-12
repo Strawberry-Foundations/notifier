@@ -28,6 +28,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     entry_points={"console_scripts": ["notifier = notifier.cli:entry"]},
+    package_data={'notifier': ['py-logo.py', 'example_notification_sound.wav', "os_notifiers/binaries/*"]},
     include_package_data=True,
     install_requires=["loguru", "jeepney ; platform_system=='Linux'"],
 )
